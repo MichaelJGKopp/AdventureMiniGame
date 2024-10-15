@@ -3,6 +3,7 @@ package com.adventure;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.*;
 
 public class Environment {
@@ -51,6 +52,21 @@ public class Environment {
         playingField[i][j] = playingFieldSymbols.get(
           random.nextInt(0, playingFieldSymbols.size()));
       }
+    }
+  }
+
+  public void saveMap() {
+
+    Path path = Path.of("com/adventure/map.txt");
+    var saveData = Arrays.stream(playingField)
+      .map(String::valueOf)
+      .map(s -> String.join("\n", s))
+      .toString();
+
+    try {
+      Files.writeString(path, saveData);
+    } catch (IOException e) {
+      System.out.println("Could not write save data to file.");
     }
   }
 
