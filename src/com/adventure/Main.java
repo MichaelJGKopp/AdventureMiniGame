@@ -15,5 +15,7 @@ public class Main {
     env.printMap();
 
     env.printCurrentPlace();
+
+    env.printSurroundingPlaces();
   }
 }

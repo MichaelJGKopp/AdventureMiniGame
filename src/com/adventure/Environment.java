@@ -20,6 +20,33 @@ public class Environment {
     NAME, DESCRIPTION
   }
 
+  public void printSurroundingPlaces() {
+
+    if (playingField == null || playingField[0] == null) {
+      System.out.println("Map not loaded yet. Can not print surrounding places.");
+      return;
+    }
+
+    System.out.println("You look around where you could continue your journey.");
+
+    int x = playerPosition[0];
+    int y = playerPosition[1];
+
+    for (Direction dir : Direction.values()) {
+      int[] vector = dir.getVector();
+      int newX = playerPosition[0] + vector[0];
+      int newY = playerPosition[1] + vector[1];
+      if (newX < 0 || newX > playingField.length - 1
+        || newY < 0 || newY > playingField[0].length - 1) {
+        continue;
+      }
+      System.out.print(dir + ": ");
+      printPlace(playerPosition[0] + vector[0], playerPosition[1] + vector[1]);
+    }
+  }
+
+
+
   public void printCurrentPlace() {
     printPlace(playerPosition[0], playerPosition[1]);
   }
@@ -29,6 +56,7 @@ public class Environment {
     var locationName = getPlaceKey(x, y);
     System.out.println("You arrive at a " + locationName + ".");
     System.out.println(getPlaceDescription(x, y));
+    System.out.println();
   }
 
   public String getPlaceDescription(int x, int y) {
@@ -140,6 +168,7 @@ public class Environment {
     System.out.println("-------------------");
     System.out.println(getMapString(true));
     System.out.println("-------------------");
+    System.out.println();
   }
 
   public void updatePlayerPosition() {
