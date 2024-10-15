@@ -7,7 +7,7 @@ Desert$The hot desert sun beats down on you. Sand dunes stretch as far as the ey
 Swamp$Thick, murky water and mud slow your movement in the swamp. The air is damp and smells of decay. Strange, distant croaks and splashes make you feel uneasy.
 Plains$Open, grassy plains spread out before you. Wildflowers dot the landscape, and the soft breeze feels refreshing. It’s easy to move here, but also easy to be spotted by enemies.
 Village$A small village with humble cottages and friendly villagers. Farmers tend to their fields, and the smell of freshly baked bread wafts from a nearby bakery.
-Ruins$You come across ancient, crumbling ruins. Vines cover the weathered stone walls, and there's an eerie sense of history here. Who knows what secrets or dangers these ruins hide?
+Ruin$You come across ancient, crumbling ruins. Vines cover the weathered stone walls, and there's an eerie sense of history here. Who knows what secrets or dangers these ruins hide?
 Hill$Rolling hills stretch across the landscape. Standing at the top, you get a clear view of your surroundings, but beware—ambushes can happen at any time.
 Lava Field$The ground is scorched, and rivers of molten lava flow dangerously close. Heat radiates from every direction, making it difficult to stay for long. One wrong step, and it’s over.
-XSpecial$You found it! A dungeon only mentioned in myths, the Cow Dungeon. Happy April Fools' Day.
+XSecret Dungeon$You found it! A dungeon only mentioned in myths, the Cow Dungeon. Happy April Fools' Day.

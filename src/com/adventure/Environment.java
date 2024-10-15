@@ -27,7 +27,7 @@ public class Environment {
       return;
     }
 
-    System.out.println("You look around where you could continue your journey.");
+    System.out.println("Looking around you, you see in the far distance ...");
 
     int x = playerPosition[0];
     int y = playerPosition[1];
@@ -40,8 +40,7 @@ public class Environment {
         || newY < 0 || newY > playingField[0].length - 1) {
         continue;
       }
-      System.out.print(dir + ": ");
-      printPlace(playerPosition[0] + vector[0], playerPosition[1] + vector[1]);
+      System.out.println(dir + ": " + getPlaceKey(newX, newY));
     }
   }
 
