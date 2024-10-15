@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Environment {
 
   private char[][] playingField;
+  private char[][] playingFieldWithPlayer;
   private Map<String, EnumMap<Places, String>> placesData;
   private final Random random = new Random();
   private final Path mapPath = Path.of("map.txt");
@@ -71,7 +72,7 @@ public class Environment {
         placesData.put(lineAr[0], lineMap);
       }
     } catch (IOException e) {
-      System.out.println("Could ot read: " + path);
+      System.out.println("Could not read: " + path);
     }
   }
 
@@ -92,6 +93,8 @@ public class Environment {
           random.nextInt(0, playingFieldSymbols.size()));
       }
     }
+
+    updatePlayerPosition();
   }
 
   public void saveMap() {
@@ -114,12 +117,14 @@ public class Environment {
         playingFieldNew[i++] = line.replace(" ", "").toCharArray();
       }
       playingField = playingFieldNew;
+      updatePlayerPosition();
     } catch (IOException e) {
       System.out.println("Could not load map from file.");
     }
   }
 
   public void earthQuake() {
+
     System.out.println("***A mighty earthquake shifts the tiles of the map!\n" +
       "You should reorientate yourself.**");
     for (var m : playingField) {
@@ -133,12 +138,38 @@ public class Environment {
 
     System.out.println("Map");
     System.out.println("-------------------");
-    System.out.println(getMapString());
+    System.out.println(getMapString(true));
     System.out.println("-------------------");
   }
 
+  public void updatePlayerPosition() {
+    playingFieldWithPlayer = deepCopy2DArray(playingField);
+    playingFieldWithPlayer[playerPosition[0]][playerPosition[1]] = '☺';
+  }
+
+  private char[][] deepCopy2DArray(char[][] original) {
+
+    if (original == null) {
+      return null;
+    }
+
+    char[][] copy = new char[original.length][];
+    for (int i = 0; i < original.length; i++) {
+      copy[i] = Arrays.copyOf(original[i], original[i].length);
+    }
+    return copy;
+  }
+
   private String getMapString() {
-    return Arrays.stream(playingField)
+    return getMapString(false);
+  }
+
+  private String getMapString(boolean withPlayer) {
+
+    if (withPlayer) {
+      updatePlayerPosition();
+    }
+    return Arrays.stream(withPlayer ? playingFieldWithPlayer : playingField)
       .map(row -> new String(row).replace("", " ").trim())
       .collect(Collectors.joining("\n"));
   }
