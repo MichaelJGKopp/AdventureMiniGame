@@ -7,8 +7,9 @@ import java.util.*;
 
 public class Environment {
 
-  private char[][] map;
+  private char[][] playingField;
   private Map<String, EnumMap<Places, String>> data;
+  private final Random random = new Random();
 
   enum Places {
     NAME, DESCRIPTION
@@ -36,22 +37,30 @@ public class Environment {
 
   public void generateMap(int xMax, int yMax) {
 
+    if (xMax < 1 || yMax < 1) {
+      System.out.println("Generated playing field can not be smaller than 1 tile.");
+    }
+
+    var playingFieldSymbols = data.keySet().stream()
+      .map(s -> s.charAt(0))
+      .toList();
+    playingField = new char[xMax][yMax];
 
     for (int i = 0; i < xMax; i++) {
       for (int j = 0; j < yMax; j++) {
-
+        playingField[i][j] = playingFieldSymbols.get(
+          random.nextInt(0, playingFieldSymbols.size()));
       }
     }
-    map = new
   }
 
   public void earthQuake() {
     System.out.println("***A mighty earthquake shifts the tiles of the map!\n" +
       "You should reorientate yourself.**");
-    for (var m : map) {
+    for (var m : playingField) {
       Collections.shuffle(Arrays.asList(m));
     }
-    Collections.shuffle(map);
+    Collections.shuffle(playingField);
     printMap();
   }
 }
