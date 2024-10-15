@@ -14,6 +14,6 @@ public class Main {
     env.loadMapFromFile();
     env.printMap();
 
-
+    env.printCurrentPlace();
   }
 }

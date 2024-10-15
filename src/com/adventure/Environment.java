@@ -10,17 +10,53 @@ import java.util.stream.Collectors;
 public class Environment {
 
   private char[][] playingField;
-  private Map<String, EnumMap<Places, String>> data;
+  private Map<String, EnumMap<Places, String>> placesData;
   private final Random random = new Random();
   private final Path mapPath = Path.of("map.txt");
+  private int[] playerPosition = {0, 0};
 
   enum Places {
     NAME, DESCRIPTION
   }
 
+  public void printCurrentPlace() {
+    printPlace(playerPosition[0], playerPosition[1]);
+  }
+
+  public void printPlace(int x, int y) {
+
+    var locationName = getPlaceKey(x, y);
+    System.out.println("You arrive at a " + locationName + ".");
+    System.out.println(getPlaceDescription(x, y));
+  }
+
+  public String getPlaceDescription(int x, int y) {
+    return getPlaceData(x, y, Places.DESCRIPTION);
+  }
+
+  public String getPlaceData(int x, int y, Places places) {
+
+    var placeData = placesData.get(getPlaceKey(x, y));
+    return placeData.getOrDefault(places, "Place data not found.");
+  }
+
+  public String getPlaceKey(int x, int y) {
+
+    if (playingField == null || x >= playingField.length
+      || playingField[0] == null || y >= playingField[0].length) {
+      System.out.println("Can not reach place outside of map.");
+    }
+
+    char placeChar = playingField[x][y];
+    var locationName = placesData.keySet().stream()
+      .filter(s -> s.charAt(0) == placeChar)
+      .collect(Collectors.joining());
+    return locationName;
+  }
+
   public void loadPlaces() {
 
-    data = new HashMap<>();
+    placesData = new HashMap<>();
     Path path = Path.of("places.txt");
 
     System.out.println(path.toAbsolutePath());
@@ -32,7 +68,7 @@ public class Environment {
         for (int i = 0; i < lineAr.length && i < Places.values().length; i++) {
           lineMap.put(Places.values()[i], lineAr[i]);
         }
-        data.put(lineAr[0], lineMap);
+        placesData.put(lineAr[0], lineMap);
       }
     } catch (IOException e) {
       System.out.println("Could ot read: " + path);
@@ -45,7 +81,7 @@ public class Environment {
       System.out.println("Generated playing field can not be smaller than 1 tile.");
     }
 
-    var playingFieldSymbols = data.keySet().stream()
+    var playingFieldSymbols = placesData.keySet().stream()
       .map(s -> s.charAt(0))
       .toList();
     playingField = new char[xMax][yMax];
