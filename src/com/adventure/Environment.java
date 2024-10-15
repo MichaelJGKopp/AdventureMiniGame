@@ -13,6 +13,7 @@ public class Environment {
   private char[][] playingField;
   private Map<String, EnumMap<Places, String>> data;
   private final Random random = new Random();
+  private final Path mapPath = Path.of("map.txt");
 
   enum Places {
     NAME, DESCRIPTION
@@ -60,12 +61,26 @@ public class Environment {
 
   public void saveMap() {
 
-    Path path = Path.of("map.txt");
     try {
-      Files.writeString(path, getMapString(),
+      Files.writeString(mapPath, getMapString(),
         StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     } catch (IOException e) {
       System.out.println("Could not write save data to file.");
+    }
+  }
+
+  public void loadMap() {
+
+    try {
+      List<String> lines = Files.readAllLines(mapPath);
+      char[][] playingFieldNew = new char[lines.size()][];
+      int i = 0, j = 0;
+      for (String line : lines) {
+        playingFieldNew[i++] = line.replace(" ", "").toCharArray();
+      }
+      playingField = playingFieldNew;
+    } catch (IOException e) {
+      System.out.println("Could not load map from file.");
     }
   }
 
