@@ -1,10 +1,12 @@
 package com.adventure;
 
+import javax.xml.stream.events.Characters;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Environment {
 
@@ -19,8 +21,9 @@ public class Environment {
   public void loadData() {
 
     data = new HashMap<>();
-    Path path = Path.of("com/adventure/places.txt");
+    Path path = Path.of("places.txt");
 
+    System.out.println(path.toAbsolutePath());
     try {
       for (var line : Files.readAllLines(path)) {
         var lineAr = line.split("\\$");
@@ -57,14 +60,10 @@ public class Environment {
 
   public void saveMap() {
 
-    Path path = Path.of("com/adventure/map.txt");
-    var saveData = Arrays.stream(playingField)
-      .map(String::valueOf)
-      .map(s -> String.join("\n", s))
-      .toString();
-
+    Path path = Path.of("map.txt");
     try {
-      Files.writeString(path, saveData);
+      Files.writeString(path, getMapString(),
+        StandardOpenOption.CREATE, StandardOpenOption.TRUNCATE_EXISTING);
     } catch (IOException e) {
       System.out.println("Could not write save data to file.");
     }
@@ -76,7 +75,21 @@ public class Environment {
     for (var m : playingField) {
       Collections.shuffle(Arrays.asList(m));
     }
-    Collections.shuffle(playingField);
+    Collections.shuffle(Arrays.asList(playingField));
     printMap();
+  }
+
+  public void printMap() {
+
+    System.out.println("Map");
+    System.out.println("-------------------");
+    System.out.println(getMapString());
+    System.out.println("-------------------");
+  }
+
+  private String getMapString() {
+    return Arrays.stream(playingField)
+      .map(row -> new String(row).replace("", " ").trim())
+      .collect(Collectors.joining("\n"));
   }
 }
