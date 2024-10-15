@@ -14,7 +14,33 @@ public enum Direction {
     {-1, -1}  // NORTHWEST
   };
 
+  private static final String[] arrows = {
+    "\u2191",  // NORTH: ↑
+    "\u2197",  // NORTHEAST: ↗
+    "\u2192",  // EAST: →
+    "\u2198",  // SOUTHEAST: ↘
+    "\u2193",  // SOUTH: ↓
+    "\u2199",  // SOUTHWEST: ↙
+    "\u2190",  // WEST: ←
+    "\u2196"   // NORTHWEST: ↖
+  };
+
+  private static final String[] keys = {
+    "w",  // NORTH: ↑
+    "e",  // NORTHEAST: ↗
+    "d",  // EAST: →
+    "c",  // SOUTHEAST: ↘
+    "s",  // SOUTH: ↓
+    "y",  // SOUTHWEST: ↙
+    "a",  // WEST: ←
+    "q"   // NORTHWEST: ↖
+  };
+
   public int[] getVector() {
     return directions[this.ordinal()];
+  }
+
+  public String getButton() {
+    return keys[this.ordinal()];
   }
 }
