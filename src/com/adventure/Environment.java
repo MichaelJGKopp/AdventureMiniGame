@@ -87,7 +87,6 @@ public class Environment {
     placesData = new HashMap<>();
     Path path = Path.of("places.txt");
 
-    System.out.println(path.toAbsolutePath());
     try {
       for (var line : Files.readAllLines(path)) {
         var lineAr = line.split("\\$");
@@ -163,6 +162,11 @@ public class Environment {
 
   public void printMap() {
 
+    if (playingField == null) {
+      System.out.println("Could not print. First initialize a map.");
+      return;
+    }
+
     System.out.println("Map");
     System.out.println("-------------------");
     System.out.println(getMapString(true));
@@ -193,6 +197,10 @@ public class Environment {
   }
 
   private String getMapString(boolean withPlayer) {
+
+    if (playingField == null) {
+      return "";
+    }
 
     if (withPlayer) {
       updatePlayerPosition();
