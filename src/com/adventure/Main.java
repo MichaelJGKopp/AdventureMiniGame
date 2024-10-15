@@ -4,13 +4,16 @@ public class Main {
   public static void main(String[] args) {
 
     Environment env = new Environment();
-    env.loadData();
+    env.loadPlaces(); // loads places with descriptions
+
 //    env.generateMap(5, 5);
 //    env.printMap();
 //    env.saveMap();
 //
 //    env.earthQuake();
-    env.loadMap();
+    env.loadMapFromFile();
     env.printMap();
+
+
   }
 }

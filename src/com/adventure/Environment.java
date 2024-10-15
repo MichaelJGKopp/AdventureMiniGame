@@ -1,6 +1,5 @@
 package com.adventure;
 
-import javax.xml.stream.events.Characters;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +18,7 @@ public class Environment {
     NAME, DESCRIPTION
   }
 
-  public void loadData() {
+  public void loadPlaces() {
 
     data = new HashMap<>();
     Path path = Path.of("places.txt");
@@ -69,7 +68,7 @@ public class Environment {
     }
   }
 
-  public void loadMap() {
+  public void loadMapFromFile() {
 
     try {
       List<String> lines = Files.readAllLines(mapPath);
