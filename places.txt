@@ -1,13 +1,13 @@
-Town$A bustling town full of lively merchants, busy streets, and friendly faces. You can rest here, stock up on supplies, or talk to NPCs to get quests.
+Town$A bustling town full of lively merchants, busy streets, and friendly faces. \nYou can rest here, stock up on supplies, or talk to NPCs to get quests.
 Forest$You visit a scenic forest full of wonder and little happy elves.
-Mountain$The steep, rocky slopes of the mountain make travel difficult. Cold winds bite at your skin as you climb higher, and danger lurks within the caves.
+Mountain$The steep, rocky slopes of the mountain make travel difficult. \nCold winds bite at your skin as you climb higher, and danger lurks within the caves.
 Castle$A dark and gloomy castle appears in front of you, it might be better to move away quickly.
-Water (Lake/River)$A clear lake stretches out before you, its surface shimmering under the sun. Gentle waves lap against the shore. Rivers flow through the landscape, providing a serene backdrop.
-Desert$The hot desert sun beats down on you. Sand dunes stretch as far as the eye can see, and every step you take makes you feel a bit weaker under the relentless heat.
-Swamp$Thick, murky water and mud slow your movement in the swamp. The air is damp and smells of decay. Strange, distant croaks and splashes make you feel uneasy.
-Plains$Open, grassy plains spread out before you. Wildflowers dot the landscape, and the soft breeze feels refreshing. It’s easy to move here, but also easy to be spotted by enemies.
-Village$A small village with humble cottages and friendly villagers. Farmers tend to their fields, and the smell of freshly baked bread wafts from a nearby bakery.
-Ruin$You come across ancient, crumbling ruins. Vines cover the weathered stone walls, and there's an eerie sense of history here. Who knows what secrets or dangers these ruins hide?
+Water (Lake/River)$A clear lake stretches out before you, its surface shimmering under the sun. \nGentle waves lap against the shore. Rivers flow through the landscape, providing a serene backdrop.
+Desert$The hot desert sun beats down on you. Sand dunes stretch as far as the eye can see, \nand every step you take makes you feel a bit weaker under the relentless heat.
+Swamp$Thick, murky water and mud slow your movement in the swamp. The air is damp and smells of decay. \nStrange, distant croaks and splashes make you feel uneasy.
+Plains$Open, grassy plains spread out before you. Wildflowers dot the landscape, and the soft breeze feels refreshing. \nIt’s easy to move here, but also easy to be spotted by enemies.
+Village$A small village with humble cottages and friendly villagers. Farmers tend to their fields, \nand the smell of freshly baked bread wafts from a nearby bakery.
+Ruin$You come across ancient, crumbling ruins. Vines cover the weathered stone walls, and there's an eerie sense of history here. \nWho knows what secrets or dangers these ruins hide?
 Hill$Rolling hills stretch across the landscape. Standing at the top, you get a clear view of your surroundings, but beware—ambushes can happen at any time.
-Lava Field$The ground is scorched, and rivers of molten lava flow dangerously close. Heat radiates from every direction, making it difficult to stay for long. One wrong step, and it’s over.
-XSecret Dungeon$You found it! A dungeon only mentioned in myths, the Cow Dungeon. Happy April Fools' Day.
+Lava Field$The ground is scorched, and rivers of molten lava flow dangerously close. \nHeat radiates from every direction, making it difficult to stay for long. One wrong step, and it’s over.
+XSecret Dungeon$You found it! A dungeon only mentioned in myths, the Cow Dungeon. \nHappy April Fools' Day.

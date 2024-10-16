@@ -40,8 +40,10 @@ public class Environment {
         || newY < 0 || newY > playingField[0].length - 1) {
         continue;
       }
-      System.out.println(dir + ": " + getPlaceKey(newX, newY));
+      System.out.printf("%s(%s, \"%s\"): %s%n",
+        dir, dir.getArrow(), dir.getButton(), getPlaceKey(newX, newY));
     }
+    System.out.println();
   }
 
 
@@ -70,9 +72,10 @@ public class Environment {
 
   public String getPlaceKey(int x, int y) {
 
-    if (playingField == null || x >= playingField.length
-      || playingField[0] == null || y >= playingField[0].length) {
+    if (playingField == null || x >= playingField.length || x < 0
+      || playingField[0] == null || y >= playingField[0].length || y < 0) {
       System.out.println("Can not reach place outside of map.");
+      return null;
     }
 
     char placeChar = playingField[x][y];
@@ -174,9 +177,38 @@ public class Environment {
     System.out.println();
   }
 
+  public boolean gameEnd() {
+
+    if(playerPosition[0] == playingField.length - 1 && playingField[1] != null &&
+       playerPosition[1] == playingField[playerPosition[0]].length - 1) {
+      return true;
+    }
+    return false;
+  }
+
+  public boolean movePlayer(Direction dir) {
+
+    int x = playerPosition[0] + dir.getVector()[0];
+    int y = playerPosition[1] + dir.getVector()[1];
+
+    if (playingField == null || x >= playingField.length || x < 0
+      || playingField[0] == null || y >= playingField[x].length || y < 0) {
+      System.out.println("Can not reach place outside of map.");
+      return false;
+    }
+    playerPosition[0] = x;
+    playerPosition[1] = y;
+    return true;
+  }
+
   public void updatePlayerPosition() {
+
     playingFieldWithPlayer = deepCopy2DArray(playingField);
     playingFieldWithPlayer[playerPosition[0]][playerPosition[1]] = '☺';
+
+    int xMax = playingField.length - 1;
+    int yMax = playingField[xMax].length - 1;
+    playingFieldWithPlayer[xMax][yMax] = '!';
   }
 
   private char[][] deepCopy2DArray(char[][] original) {
@@ -205,8 +237,20 @@ public class Environment {
     if (withPlayer) {
       updatePlayerPosition();
     }
-    return Arrays.stream(withPlayer ? playingFieldWithPlayer : playingField)
-      .map(row -> new String(row).replace("", " ").trim())
+    String result = Arrays.stream(withPlayer ? playingFieldWithPlayer : playingField)
+      .map(row -> new String(row).replace("", "  ").trim())
       .collect(Collectors.joining("\n"));
+
+    return result
+      .replace("☺ ", "🧙")
+      .replace("F ", "🌲")
+      .replace("L ", "🔥")
+      .replace("T ", "🏠")
+      .replace("V ", "🚪")
+      .replace("W ", "🌊")
+
+      .replace("S ", "🧟")
+      .replace("R ", "🐉")
+      .replace("!", "🏰");
   }
 }

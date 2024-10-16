@@ -43,4 +43,8 @@ public enum Direction {
   public String getButton() {
     return keys[this.ordinal()];
   }
+
+  public String getArrow() {
+    return arrows[this.ordinal()];
+  }
 }
