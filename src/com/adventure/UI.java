@@ -26,9 +26,10 @@ public class UI {
   """;
 
   private static final String youWon = """
+            
             ********************************
-            Congratulations you won!\n" +
-            "You reached the end of the map!
+            Congratulations you won!
+            You reached the end of the map!
             ********************************
             """;
 

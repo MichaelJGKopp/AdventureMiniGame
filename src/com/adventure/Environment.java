@@ -61,7 +61,7 @@ public class Environment {
   }
 
   public String getPlaceDescription(int x, int y) {
-    return getPlaceData(x, y, Places.DESCRIPTION);
+    return getPlaceData(x, y, Places.DESCRIPTION).replace("\\n", "\n");
   }
 
   public String getPlaceData(int x, int y, Places places) {
@@ -254,6 +254,7 @@ public class Environment {
     if (withPlayer) {
       return addSymbolsToMap(result)
         .replace("☺ ", "🧙")
+        .replace("☺", "🧙")
         .replace("!", "💎");
     } else {
       return result;
