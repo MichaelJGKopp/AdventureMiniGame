@@ -19,8 +19,11 @@ The player who controls the hero moves one tile per round until the lower right 
 Requirements
 
 A computer on the level of a DCI notebook or a next generation DOS emulator would do just fine, who knows even a game boy might be enough?
+
 Features
+
 Map
+
 The map can be randomly generated, saved to or loaded from a text file.
 Anyone can also edit the text file to create your own maps. The letter represents the short name of the environment/tile as seen next.
 
