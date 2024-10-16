@@ -17,7 +17,7 @@ public class Environment {
   private int[] playerPosition = {0, 0};
 
   enum Places {
-    NAME, DESCRIPTION
+    NAME, DESCRIPTION, SYMBOL
   }
 
   public void printSurroundingPlaces() {
@@ -65,9 +65,19 @@ public class Environment {
   }
 
   public String getPlaceData(int x, int y, Places places) {
-
     var placeData = placesData.get(getPlaceKey(x, y));
     return placeData.getOrDefault(places, "Place data not found.");
+  }
+
+  public String addSymbolsToMap(String mapString) {
+
+    for (var entry : placesData.entrySet()) {
+      String placeName = entry.getKey().trim();
+      String symbol = entry.getValue().get(Places.SYMBOL);
+      mapString = mapString.replace(placeName.substring(0, 1).toUpperCase() + " ", symbol);
+      mapString = mapString.replace(placeName.substring(0, 1).toUpperCase(), symbol);
+    }
+    return mapString;
   }
 
   public String getPlaceKey(int x, int y) {
@@ -241,16 +251,20 @@ public class Environment {
       .map(row -> new String(row).replace("", "  ").trim())
       .collect(Collectors.joining("\n"));
 
-    return result
-      .replace("☺ ", "🧙")
-      .replace("F ", "🌲")
-      .replace("L ", "🔥")
-      .replace("T ", "🏠")
-      .replace("V ", "🚪")
-      .replace("W ", "🌊")
-
-      .replace("S ", "🧟")
-      .replace("R ", "🐉")
-      .replace("!", "🏰");
+    if (withPlayer) {
+      return addSymbolsToMap(result)
+        .replace("☺ ", "🧙")
+        .replace("!", "💎");
+    } else {
+      return result;
+    }
+//      .replace("F ", "🌲")
+//      .replace("L ", "🔥")
+//      .replace("T ", "🏠")
+//      .replace("V ", "🚪")
+//      .replace("W ", "🌊")
+//
+//      .replace("S ", "🧟")
+//      .replace("R ", "🐉")
   }
 }

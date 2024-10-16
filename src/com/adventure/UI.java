@@ -25,6 +25,13 @@ public class UI {
   There are many surprises awaiting the hero (you) along the way.
   """;
 
+  private static final String youWon = """
+            ********************************
+            Congratulations you won!\n" +
+            "You reached the end of the map!
+            ********************************
+            """;
+
   private Environment env = new Environment();
   private Scanner scanner = new Scanner(System.in);
   private boolean isRunning;
@@ -43,7 +50,10 @@ public class UI {
           System.out.println(rules);
           play();
         }
-        case "1" -> env.generateMap(5, 5);
+        case "1" -> {
+          env.generateMap(5, 5);
+          env.printMap();
+        }
         case "2" -> env.saveMap();
         case "3" -> env.loadMapFromFile();
         case "4" -> env.printMap();
@@ -66,8 +76,7 @@ public class UI {
       if (isMoving) {
         if (env.gameEnd()) {
           isRunning = false;
-          System.out.println("Congratulations you won!\n" +
-            "You reached the end of the map!");
+          System.out.println(youWon);
           return;
         }
         printSetting();
