@@ -74,8 +74,11 @@ public class Environment {
     for (var entry : placesData.entrySet()) {
       String placeName = entry.getKey().trim();
       String symbol = entry.getValue().get(Places.SYMBOL);
-      mapString = mapString.replace(placeName.substring(0, 1).toUpperCase() + " ", symbol);
-      mapString = mapString.replace(placeName.substring(0, 1).toUpperCase(), symbol);
+
+      if (symbol != null) {
+        mapString = mapString.replace(placeName.substring(0, 1).toUpperCase() + " ", symbol);
+        mapString = mapString.replace(placeName.substring(0, 1).toUpperCase(), symbol);
+      }
     }
     return mapString;
   }
