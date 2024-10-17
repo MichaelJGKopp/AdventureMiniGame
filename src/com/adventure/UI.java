@@ -86,10 +86,10 @@ public class UI {
         }
       }
 
-      System.out.print("Press a key to continue: ");
+      System.out.print("Press a key to continue or \"z\" to exit: ");
       String input = scanner.nextLine().trim().substring(0, 1).toLowerCase();
 
-      if (input.equals("q")) {
+      if (input.equals("z")) {
         isRunning = false;
         return;
       }
